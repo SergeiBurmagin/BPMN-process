@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+                  xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+                  xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+                  xmlns:camunda="http://camunda.org/schema/1.0/bpmn"
+                  id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler"
+                  exporterVersion="1.15.1">
+  <bpmn:process id="check-completed-status" name="Проверка статуса &#34;Выкуплен&#34;" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" camunda:asyncBefore="true">
+        <bpmn:extensionElements>
+            <camunda:executionListener delegateExpression="${orderIdCheckListener}" event="start"/>
+        </bpmn:extensionElements>
+      <bpmn:outgoing>SequenceFlow_1p6os3p</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="EndEvent_09fvdvc">
+      <bpmn:incoming>SequenceFlow_1d856ch</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1p6os3p" sourceRef="StartEvent_1" targetRef="Task_0ctopfn" />
+    <bpmn:sequenceFlow id="SequenceFlow_1d856ch" sourceRef="Task_0ctopfn" targetRef="EndEvent_09fvdvc" />
+    <bpmn:serviceTask id="Task_0ctopfn" name="Проверка статуса &#34;Выкуплен&#34;" camunda:delegateExpression="${checkCompletedStatusActivity}">
+      <bpmn:incoming>SequenceFlow_1p6os3p</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1d856ch</bpmn:outgoing>
+    </bpmn:serviceTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="check-completed-status">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="173" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_09fvdvc_di" bpmnElement="EndEvent_09fvdvc">
+        <dc:Bounds x="442.4540918163673" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="460.4540918163673" y="142" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1p6os3p_di" bpmnElement="SequenceFlow_1p6os3p">
+          <di:waypoint x="209" y="120"/>
+          <di:waypoint x="269" y="120"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="239" y="99" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1d856ch_di" bpmnElement="SequenceFlow_1d856ch">
+          <di:waypoint x="369" y="120"/>
+          <di:waypoint x="443" y="120"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="406" y="99" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_0mwj14k_di" bpmnElement="Task_0ctopfn">
+        <dc:Bounds x="269" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

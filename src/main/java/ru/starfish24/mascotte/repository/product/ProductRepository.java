@@ -1,0 +1,13 @@
+package ru.starfish24.mascotte.repository.product;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import ru.starfish24.starfish24model.product.Product;
+
+import java.util.List;
+
+@Repository
+public interface ProductRepository extends JpaRepository<Product, Long> {
+
+
+}

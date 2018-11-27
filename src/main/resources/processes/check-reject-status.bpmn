@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+                  xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+                  xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+                  xmlns:camunda="http://camunda.org/schema/1.0/bpmn"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1"
+                  targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.15.1">
+  <bpmn:process id="check-reject-status" name="Проверка статуса &#34;Отказ&#34;" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" camunda:asyncBefore="true">
+        <bpmn:extensionElements>
+            <camunda:executionListener delegateExpression="${orderIdCheckListener}" event="start"/>
+        </bpmn:extensionElements>
+      <bpmn:outgoing>SequenceFlow_0bu5coo</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="EndEvent_15gimf5">
+        <bpmn:incoming>SequenceFlow_0entay3</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0bu5coo" sourceRef="StartEvent_1" targetRef="Task_0y69qu9" />
+      <bpmn:sequenceFlow id="SequenceFlow_0ax7tbb" sourceRef="Task_0y69qu9" targetRef="ExclusiveGateway_1c31sgb"/>
+    <bpmn:serviceTask id="Task_0y69qu9" name="Проверка статуса &#34;Отказ&#34;" camunda:delegateExpression="${checkRejectStatusActivity}">
+      <bpmn:incoming>SequenceFlow_0bu5coo</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0ax7tbb</bpmn:outgoing>
+    </bpmn:serviceTask>
+      <bpmn:serviceTask id="ServiceTask_0v89g62" name="Перевести заказ в статус &#34;Отказ&#34;"
+                        camunda:asyncBefore="true" camunda:delegateExpression="${changeOrderStatusActivity}">
+          <bpmn:extensionElements>
+              <camunda:inputOutput>
+                  <camunda:inputParameter name="statusCode">reject</camunda:inputParameter>
+              </camunda:inputOutput>
+          </bpmn:extensionElements>
+          <bpmn:incoming>SequenceFlow_1p8evf9</bpmn:incoming>
+          <bpmn:outgoing>SequenceFlow_15jmjbx</bpmn:outgoing>
+      </bpmn:serviceTask>
+      <bpmn:exclusiveGateway id="ExclusiveGateway_1c31sgb">
+          <bpmn:incoming>SequenceFlow_0ax7tbb</bpmn:incoming>
+          <bpmn:outgoing>SequenceFlow_1p8evf9</bpmn:outgoing>
+          <bpmn:outgoing>SequenceFlow_0ym9rqa</bpmn:outgoing>
+      </bpmn:exclusiveGateway>
+      <bpmn:sequenceFlow id="SequenceFlow_1p8evf9" name="Если в статусе отказ" sourceRef="ExclusiveGateway_1c31sgb"
+                         targetRef="ServiceTask_0v89g62">
+          <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${IsAllRejected == 'true'}
+          </bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+      <bpmn:sequenceFlow id="SequenceFlow_0ym9rqa" sourceRef="ExclusiveGateway_1c31sgb"
+                         targetRef="ExclusiveGateway_0jj4gnr"/>
+      <bpmn:exclusiveGateway id="ExclusiveGateway_0jj4gnr">
+          <bpmn:incoming>SequenceFlow_0ym9rqa</bpmn:incoming>
+          <bpmn:incoming>SequenceFlow_1f9vx0v</bpmn:incoming>
+          <bpmn:outgoing>SequenceFlow_0entay3</bpmn:outgoing>
+      </bpmn:exclusiveGateway>
+      <bpmn:sequenceFlow id="SequenceFlow_0entay3" sourceRef="ExclusiveGateway_0jj4gnr" targetRef="EndEvent_15gimf5"/>
+      <bpmn:sequenceFlow id="SequenceFlow_15jmjbx" sourceRef="ServiceTask_0v89g62"
+                         targetRef="IntermediateThrowEvent_10ox5jf"/>
+      <bpmn:sequenceFlow id="SequenceFlow_1f9vx0v" sourceRef="IntermediateThrowEvent_10ox5jf"
+                         targetRef="ExclusiveGateway_0jj4gnr"/>
+      <bpmn:intermediateThrowEvent id="IntermediateThrowEvent_10ox5jf" name="TERMINATE_ALL">
+          <bpmn:incoming>SequenceFlow_15jmjbx</bpmn:incoming>
+          <bpmn:outgoing>SequenceFlow_1f9vx0v</bpmn:outgoing>
+          <bpmn:signalEventDefinition signalRef="Signal_18xw0o2"/>
+      </bpmn:intermediateThrowEvent>
+  </bpmn:process>
+    <bpmn:signal id="Signal_18xw0o2" name="TERMINATE_ALL-${orderId}"/>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="check-reject-status">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="173" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_15gimf5_di" bpmnElement="EndEvent_15gimf5">
+          <dc:Bounds x="851" y="102" width="36" height="36"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="496" y="142" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0bu5coo_di" bpmnElement="SequenceFlow_0bu5coo">
+          <di:waypoint x="209" y="120"/>
+          <di:waypoint x="281" y="120"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="245" y="99" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0ax7tbb_di" bpmnElement="SequenceFlow_0ax7tbb">
+          <di:waypoint x="381" y="120"/>
+          <di:waypoint x="422" y="120"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="429.5" y="99" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_0th94rg_di" bpmnElement="Task_0y69qu9">
+        <dc:Bounds x="281" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="ServiceTask_0v89g62_di" bpmnElement="ServiceTask_0v89g62">
+            <dc:Bounds x="513" y="233" width="100" height="80"/>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="ExclusiveGateway_1c31sgb_di" bpmnElement="ExclusiveGateway_1c31sgb"
+                          isMarkerVisible="true">
+            <dc:Bounds x="422" y="95" width="50" height="50"/>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNEdge id="SequenceFlow_1p8evf9_di" bpmnElement="SequenceFlow_1p8evf9">
+            <di:waypoint x="447" y="145"/>
+            <di:waypoint x="447" y="273"/>
+            <di:waypoint x="513" y="273"/>
+            <bpmndi:BPMNLabel>
+                <dc:Bounds x="455" y="177" width="76" height="27"/>
+            </bpmndi:BPMNLabel>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="SequenceFlow_0ym9rqa_di" bpmnElement="SequenceFlow_0ym9rqa">
+            <di:waypoint x="472" y="120"/>
+            <di:waypoint x="747" y="120"/>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNShape id="ExclusiveGateway_0jj4gnr_di" bpmnElement="ExclusiveGateway_0jj4gnr"
+                          isMarkerVisible="true">
+            <dc:Bounds x="747" y="95" width="50" height="50"/>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNEdge id="SequenceFlow_0entay3_di" bpmnElement="SequenceFlow_0entay3">
+            <di:waypoint x="797" y="120"/>
+            <di:waypoint x="851" y="120"/>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="SequenceFlow_15jmjbx_di" bpmnElement="SequenceFlow_15jmjbx">
+            <di:waypoint x="613" y="273"/>
+            <di:waypoint x="754" y="273"/>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="SequenceFlow_1f9vx0v_di" bpmnElement="SequenceFlow_1f9vx0v">
+            <di:waypoint x="772" y="255"/>
+            <di:waypoint x="772" y="145"/>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNShape id="IntermediateThrowEvent_1s9dljr_di" bpmnElement="IntermediateThrowEvent_10ox5jf">
+            <dc:Bounds x="754" y="255" width="36" height="36"/>
+        </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

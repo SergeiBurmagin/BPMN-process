@@ -1,0 +1,2713 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Api Documentation",
+    "version": "1.0",
+    "title": "Api Documentation",
+    "termsOfService": "urn:tos",
+    "contact": {},
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  },
+  "host": "localhost:8081",
+  "basePath": "/services/v2",
+  "tags": [
+    {
+      "name": "basic-error-controller",
+      "description": "Basic Error Controller"
+    },
+    {
+      "name": "employee-controller",
+      "description": "Employee Controller"
+    },
+    {
+      "name": "internal-reservation-controller",
+      "description": "Internal Reservation Controller"
+    },
+    {
+      "name": "order-controller",
+      "description": "Order Controller"
+    },
+    {
+      "name": "order-item-controller",
+      "description": "Order Item Controller"
+    },
+    {
+      "name": "payment-controller",
+      "description": "Payment Controller"
+    },
+    {
+      "name": "price-controller",
+      "description": "Price Controller"
+    },
+    {
+      "name": "product-controller",
+      "description": "Product Controller"
+    },
+    {
+      "name": "promo-controller",
+      "description": "Promo Controller"
+    },
+    {
+      "name": "shipping-controller",
+      "description": "Shipping Controller"
+    },
+    {
+      "name": "stock-controller",
+      "description": "Stock Controller"
+    },
+    {
+      "name": "warehouse-controller",
+      "description": "Warehouse Controller"
+    }
+  ],
+  "paths": {
+    "/employees/groups": {
+      "get": {
+        "tags": [
+          "employee-controller"
+        ],
+        "summary": "selectEmployeeGroups",
+        "operationId": "selectEmployeeGroupsUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/employees/list": {
+      "get": {
+        "tags": [
+          "employee-controller"
+        ],
+        "summary": "getEmployeeList",
+        "operationId": "getEmployeeListUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EmployeeLFDto"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/error": {
+      "get": {
+        "tags": [
+          "basic-error-controller"
+        ],
+        "summary": "errorHtml",
+        "operationId": "errorHtmlUsingGET",
+        "produces": [
+          "text/html"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ModelAndView"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "head": {
+        "tags": [
+          "basic-error-controller"
+        ],
+        "summary": "errorHtml",
+        "operationId": "errorHtmlUsingHEAD",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "text/html"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ModelAndView"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "basic-error-controller"
+        ],
+        "summary": "errorHtml",
+        "operationId": "errorHtmlUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "text/html"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ModelAndView"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "basic-error-controller"
+        ],
+        "summary": "errorHtml",
+        "operationId": "errorHtmlUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "text/html"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ModelAndView"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "basic-error-controller"
+        ],
+        "summary": "errorHtml",
+        "operationId": "errorHtmlUsingDELETE",
+        "produces": [
+          "text/html"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ModelAndView"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      },
+      "options": {
+        "tags": [
+          "basic-error-controller"
+        ],
+        "summary": "errorHtml",
+        "operationId": "errorHtmlUsingOPTIONS",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "text/html"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ModelAndView"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      },
+      "patch": {
+        "tags": [
+          "basic-error-controller"
+        ],
+        "summary": "errorHtml",
+        "operationId": "errorHtmlUsingPATCH",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "text/html"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ModelAndView"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/internalReservation": {
+      "post": {
+        "tags": [
+          "internal-reservation-controller"
+        ],
+        "summary": "update",
+        "operationId": "updateUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "toUpdate",
+            "description": "toUpdate",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/InternalReservationDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/InternalReservationDto"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "internal-reservation-controller"
+        ],
+        "summary": "createResponse",
+        "operationId": "createResponseUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/InternalReservationRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/InternalReservationDto"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/internalReservation/cancel/{internalReservationId}": {
+      "post": {
+        "tags": [
+          "internal-reservation-controller"
+        ],
+        "summary": "cancel",
+        "operationId": "cancelUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "internalReservationId",
+            "in": "path",
+            "description": "internalReservationId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/InternalReservationDto"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/internalReservation/canceled/{internalReservationId}": {
+      "post": {
+        "tags": [
+          "internal-reservation-controller"
+        ],
+        "summary": "canceled",
+        "operationId": "canceledUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "internalReservationId",
+            "in": "path",
+            "description": "internalReservationId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/InternalReservationDto"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/internalReservation/confirm/{internalReservationId}/{confirmId}": {
+      "post": {
+        "tags": [
+          "internal-reservation-controller"
+        ],
+        "summary": "confirm",
+        "operationId": "confirmUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "confirmId",
+            "in": "path",
+            "description": "confirmId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "internalReservationId",
+            "in": "path",
+            "description": "internalReservationId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/InternalReservationDto"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/internalReservation/failed/{internalResrvationId}": {
+      "post": {
+        "tags": [
+          "internal-reservation-controller"
+        ],
+        "summary": "failed",
+        "operationId": "failedUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "internalReservationId",
+            "in": "path",
+            "description": "internalReservationId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/InternalReservationDto"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/internalReservation/search": {
+      "get": {
+        "tags": [
+          "internal-reservation-controller"
+        ],
+        "summary": "findByOrderId",
+        "operationId": "findByOrderIdUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "query",
+            "description": "orderId",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/InternalReservationDto"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/internalReservation/search/notreserved/{orderId}": {
+      "get": {
+        "tags": [
+          "internal-reservation-controller"
+        ],
+        "summary": "getNotReserved",
+        "operationId": "getNotReservedUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "orderId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/InternalReservationDto"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/internalReservation/search/reserved/{orderId}": {
+      "get": {
+        "tags": [
+          "internal-reservation-controller"
+        ],
+        "summary": "getReserved",
+        "operationId": "getReservedUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "orderId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/InternalReservationDto"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/internalReservation/search/tocancel": {
+      "get": {
+        "tags": [
+          "internal-reservation-controller"
+        ],
+        "summary": "getToCancel",
+        "operationId": "getToCancelUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/InternalReservationDto"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/internalReservation/search/toreserve": {
+      "get": {
+        "tags": [
+          "internal-reservation-controller"
+        ],
+        "summary": "getToReserve",
+        "operationId": "getToReserveUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/InternalReservationDto"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/internalReservation/{id}": {
+      "get": {
+        "tags": [
+          "internal-reservation-controller"
+        ],
+        "summary": "get",
+        "operationId": "getUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/InternalReservationDto"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/internalReservation/{internalReservationId}/transfer/cancel/": {
+      "post": {
+        "tags": [
+          "internal-reservation-controller"
+        ],
+        "summary": "cancelTransfer",
+        "operationId": "cancelTransferUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "internalReservationId",
+            "in": "path",
+            "description": "internalReservationId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/InternalReservationDto"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/internalReservation/{internalReservationId}/transfer/confirm/": {
+      "post": {
+        "tags": [
+          "internal-reservation-controller"
+        ],
+        "summary": "confirmTransfer",
+        "operationId": "confirmTransferUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "internalReservationId",
+            "in": "path",
+            "description": "internalReservationId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/InternalReservationDto"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/internalReservation/{internalReservationId}/transfer/create/": {
+      "post": {
+        "tags": [
+          "internal-reservation-controller"
+        ],
+        "summary": "createTransfer",
+        "operationId": "createTransferUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "internalReservationId",
+            "in": "path",
+            "description": "internalReservationId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/InternalReservationTransferRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/InternalReservationDto"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/order/add": {
+      "post": {
+        "tags": [
+          "order-controller"
+        ],
+        "summary": "createProductOrder",
+        "operationId": "createProductOrderUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "dto",
+            "description": "dto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProductOrderDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ControllerResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/order/cancel": {
+      "post": {
+        "tags": [
+          "order-controller"
+        ],
+        "summary": "cancelOrder",
+        "operationId": "cancelOrderUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "cancelOrderDto",
+            "description": "cancelOrderDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CancelOrderDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/order/getbystatus/{statusId}": {
+      "get": {
+        "tags": [
+          "order-controller"
+        ],
+        "summary": "getByStatus",
+        "operationId": "getByStatusUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "statusId",
+            "in": "path",
+            "description": "statusId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ProductOrderDto"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/order/last/{minutes}": {
+      "get": {
+        "tags": [
+          "order-controller"
+        ],
+        "summary": "getCreatedInMinutes",
+        "operationId": "getCreatedInMinutesUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "minutes",
+            "in": "path",
+            "description": "minutes",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ProductOrderDto"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/order/statusupdate": {
+      "post": {
+        "tags": [
+          "order-controller"
+        ],
+        "summary": "updateStatusOfOrders",
+        "operationId": "updateStatusOfOrdersUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "updateOrdersStatusDto",
+            "description": "updateOrdersStatusDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateOrdersStatusDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/order/update": {
+      "post": {
+        "tags": [
+          "order-controller"
+        ],
+        "summary": "updateProductOrder",
+        "operationId": "updateProductOrderUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "dto",
+            "description": "dto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProductOrderDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ControllerResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/order/{orderId}": {
+      "get": {
+        "tags": [
+          "order-controller"
+        ],
+        "summary": "getOrder",
+        "operationId": "getOrderUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "orderId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ProductOrderDto"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/orderitem/statusupdate": {
+      "post": {
+        "tags": [
+          "order-item-controller"
+        ],
+        "summary": "updateStatus",
+        "operationId": "updateStatusUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "access_token",
+            "in": "query",
+            "description": "access_token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "dto",
+            "description": "dto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StatusUpdateDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ControllerResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/payment/update": {
+      "post": {
+        "tags": [
+          "payment-controller"
+        ],
+        "summary": "updateStatus",
+        "operationId": "updateStatusUsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "dto",
+            "description": "dto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PaymentDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ControllerResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/price/update": {
+      "post": {
+        "tags": [
+          "price-controller"
+        ],
+        "summary": "update",
+        "operationId": "updateUsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "access_token",
+            "in": "query",
+            "description": "access_token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "priceDtos",
+            "description": "priceDtos",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PriceDto"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/product/update": {
+      "post": {
+        "tags": [
+          "product-controller"
+        ],
+        "summary": "updateProduct",
+        "operationId": "updateProductUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "access_token",
+            "in": "query",
+            "description": "access_token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "productDtoList",
+            "description": "productDtoList",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ProductDto"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ControllerResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/promo/create": {
+      "post": {
+        "tags": [
+          "promo-controller"
+        ],
+        "summary": "createPromo",
+        "operationId": "createPromoUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "dto",
+            "description": "dto",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PromoDto"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ControllerResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/shipping/updateId": {
+      "post": {
+        "tags": [
+          "shipping-controller"
+        ],
+        "summary": "updateShippingByExternalId",
+        "operationId": "updateShippingByExternalIdUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateShippingRestRequestDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ControllerResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/stock/update": {
+      "post": {
+        "tags": [
+          "stock-controller"
+        ],
+        "summary": "update",
+        "operationId": "updateUsingPOST_2",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "stockDtos",
+            "description": "stockDtos",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/StockDto"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/warehouses": {
+      "get": {
+        "tags": [
+          "warehouse-controller"
+        ],
+        "summary": "retrieveWarehouse",
+        "operationId": "retrieveWarehouseUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "access_token",
+            "in": "query",
+            "description": "access_token",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/WarehouseDto"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/warehouses/{warehouseId}/stock/remove/{productId}/{quantity}": {
+      "post": {
+        "tags": [
+          "warehouse-controller"
+        ],
+        "summary": "removeFromStock",
+        "operationId": "removeFromStockUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "description": "productId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "quantity",
+            "in": "path",
+            "description": "quantity",
+            "required": true,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "warehouseId",
+            "in": "path",
+            "description": "warehouseId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "definitions": {
+    "CancelOrderDto": {
+      "type": "object",
+      "properties": {
+        "cancelationReasonId": {
+          "type": "string",
+          "xml": {
+            "name": "cancelationReasonId",
+            "attribute": false,
+            "wrapped": false
+          }
+        },
+        "orderId": {
+          "type": "array",
+          "xml": {
+            "name": "orderId",
+            "attribute": false,
+            "wrapped": false
+          },
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "CancelOrderDto",
+      "xml": {
+        "name": "CancelOrderDto",
+        "attribute": false,
+        "wrapped": false
+      }
+    },
+    "ControllerResult": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "result": {
+          "type": "string",
+          "xml": {
+            "name": "result",
+            "attribute": false,
+            "wrapped": false
+          }
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "ControllerResult",
+      "xml": {
+        "name": "ControllerResult",
+        "attribute": false,
+        "wrapped": false
+      }
+    },
+    "CustomAttribute": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "title": "CustomAttribute",
+      "xml": {
+        "name": "CustomAttribute",
+        "attribute": false,
+        "wrapped": false
+      }
+    },
+    "DeliveryAddress": {
+      "type": "object",
+      "properties": {
+        "building": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "cityId": {
+          "type": "string"
+        },
+        "flat": {
+          "type": "string"
+        },
+        "gate": {
+          "type": "string"
+        },
+        "housing": {
+          "type": "string"
+        },
+        "metro": {
+          "type": "string"
+        },
+        "pickupShop": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "regionId": {
+          "type": "string"
+        },
+        "street": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "zip": {
+          "type": "string"
+        }
+      },
+      "title": "DeliveryAddress"
+    },
+    "EmployeeLFDto": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "lastName": {
+          "type": "string"
+        }
+      },
+      "title": "EmployeeLFDto"
+    },
+    "InternalReservationDto": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "createDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "creator": {
+          "type": "string"
+        },
+        "externalOrderId": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "lastUpdator": {
+          "type": "string"
+        },
+        "modifyDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "nextReservation": {
+          "$ref": "#/definitions/InternalReservationDto"
+        },
+        "orderItemId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "productExternalId": {
+          "type": "string"
+        },
+        "productId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "quantity": {
+          "type": "number",
+          "format": "double"
+        },
+        "reserveWarehouse": {
+          "$ref": "#/definitions/WarehouseDto"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "DO_RESERVE",
+            "RESERVED",
+            "CANCEL_RESERVE",
+            "RESERVE_CANCELED",
+            "RESERVE_FAILED",
+            "MANUAL_RESERVE_WAREHOUSE"
+          ]
+        },
+        "targetWarehouse": {
+          "$ref": "#/definitions/WarehouseDto"
+        },
+        "transferStatus": {
+          "type": "string",
+          "enum": [
+            "NO_TRANSFER",
+            "TRANSFER",
+            "CANCELED",
+            "DONE"
+          ]
+        },
+        "transferWarehouseFrom": {
+          "$ref": "#/definitions/WarehouseDto"
+        },
+        "transferWarehouseTo": {
+          "$ref": "#/definitions/WarehouseDto"
+        },
+        "transitWarehouse": {
+          "$ref": "#/definitions/WarehouseDto"
+        }
+      },
+      "title": "InternalReservationDto"
+    },
+    "InternalReservationRequest": {
+      "type": "object",
+      "properties": {
+        "orderItemId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "quantity": {
+          "type": "number",
+          "format": "double"
+        },
+        "reserveWarehouseId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "DO_RESERVE",
+            "RESERVED",
+            "CANCEL_RESERVE",
+            "RESERVE_CANCELED",
+            "RESERVE_FAILED",
+            "MANUAL_RESERVE_WAREHOUSE"
+          ]
+        },
+        "targetWarehouseId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "transfer": {
+          "type": "boolean"
+        },
+        "transferFromId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "transferToId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "transitWarehouseId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "InternalReservationRequest"
+    },
+    "InternalReservationTransferRequest": {
+      "type": "object",
+      "properties": {
+        "orderItemId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "transfer": {
+          "type": "boolean"
+        },
+        "transferFromId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "transferToId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "InternalReservationTransferRequest"
+    },
+    "ItemDto": {
+      "type": "object",
+      "properties": {
+        "customAttributes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CustomAttribute"
+          }
+        },
+        "deleted": {
+          "type": "boolean"
+        },
+        "discount": {
+          "type": "number"
+        },
+        "estimatedWeight": {
+          "type": "number"
+        },
+        "fixedWeight": {
+          "type": "number"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number",
+          "xml": {
+            "name": "price",
+            "attribute": false,
+            "wrapped": false
+          }
+        },
+        "productId": {
+          "type": "string",
+          "xml": {
+            "name": "productId",
+            "attribute": false,
+            "wrapped": false
+          }
+        },
+        "quantity": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "xmlId": {
+          "type": "string"
+        }
+      },
+      "title": "ItemDto"
+    },
+    "ItemStatusDto": {
+      "type": "object",
+      "properties": {
+        "productId": {
+          "type": "string"
+        },
+        "statusId": {
+          "type": "string"
+        }
+      },
+      "title": "ItemStatusDto"
+    },
+    "ModelAndView": {
+      "type": "object",
+      "properties": {
+        "empty": {
+          "type": "boolean"
+        },
+        "model": {
+          "type": "object"
+        },
+        "modelMap": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "reference": {
+          "type": "boolean"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "100",
+            "101",
+            "102",
+            "103",
+            "200",
+            "201",
+            "202",
+            "203",
+            "204",
+            "205",
+            "206",
+            "207",
+            "208",
+            "226",
+            "300",
+            "301",
+            "302",
+            "303",
+            "304",
+            "305",
+            "307",
+            "308",
+            "400",
+            "401",
+            "402",
+            "403",
+            "404",
+            "405",
+            "406",
+            "407",
+            "408",
+            "409",
+            "410",
+            "411",
+            "412",
+            "413",
+            "414",
+            "415",
+            "416",
+            "417",
+            "418",
+            "419",
+            "420",
+            "421",
+            "422",
+            "423",
+            "424",
+            "426",
+            "428",
+            "429",
+            "431",
+            "451",
+            "500",
+            "501",
+            "502",
+            "503",
+            "504",
+            "505",
+            "506",
+            "507",
+            "508",
+            "509",
+            "510",
+            "511"
+          ]
+        },
+        "view": {
+          "$ref": "#/definitions/View"
+        },
+        "viewName": {
+          "type": "string"
+        }
+      },
+      "title": "ModelAndView"
+    },
+    "PaymentDto": {
+      "type": "object",
+      "properties": {
+        "income": {
+          "type": "number"
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "outcome": {
+          "type": "number"
+        }
+      },
+      "title": "PaymentDto"
+    },
+    "PersonalDiscountDto": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        }
+      },
+      "title": "PersonalDiscountDto"
+    },
+    "PriceDto": {
+      "type": "object",
+      "properties": {
+        "batchCode": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number"
+        },
+        "priceCluster": {
+          "type": "string"
+        },
+        "priceType": {
+          "type": "string",
+          "xml": {
+            "name": "priceType",
+            "attribute": false,
+            "wrapped": false
+          }
+        },
+        "productId": {
+          "type": "string",
+          "xml": {
+            "name": "productId",
+            "attribute": false,
+            "wrapped": false
+          }
+        },
+        "warehouseId": {
+          "type": "string"
+        }
+      },
+      "title": "PriceDto",
+      "xml": {
+        "name": "PriceDto",
+        "attribute": false,
+        "wrapped": false
+      }
+    },
+    "ProductDto": {
+      "type": "object",
+      "properties": {
+        "active": {
+          "type": "boolean"
+        },
+        "article": {
+          "type": "string"
+        },
+        "customAttributes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CustomAttribute"
+          }
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "imageUrl": {
+          "type": "string"
+        },
+        "itemType": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "normalWeight": {
+          "type": "number"
+        },
+        "parentId": {
+          "type": "string"
+        },
+        "productCategoryId": {
+          "type": "string"
+        },
+        "productUrl": {
+          "type": "string"
+        },
+        "vendor": {
+          "type": "string"
+        }
+      },
+      "title": "ProductDto"
+    },
+    "ProductOrderDto": {
+      "type": "object",
+      "properties": {
+        "additionalPhone": {
+          "type": "string"
+        },
+        "customAttributes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CustomAttribute"
+          }
+        },
+        "customerComment": {
+          "type": "string"
+        },
+        "customerId": {
+          "type": "string"
+        },
+        "deliveryAddress": {
+          "$ref": "#/definitions/DeliveryAddress"
+        },
+        "deliveryCost": {
+          "type": "number"
+        },
+        "deliveryDate": {
+          "type": "string",
+          "example": "yyyy-MM-dd"
+        },
+        "deliveryRecipient": {
+          "type": "string"
+        },
+        "deliveryTimeFrom": {
+          "type": "string",
+          "example": "yyyy-MM-dd HH:mm:ss"
+        },
+        "deliveryTimeTill": {
+          "type": "string",
+          "example": "yyyy-MM-dd HH:mm:ss"
+        },
+        "deliveryType": {
+          "type": "string"
+        },
+        "discount": {
+          "type": "number"
+        },
+        "discountType": {
+          "type": "string",
+          "enum": [
+            "ABSOLUT",
+            "PERCENT"
+          ]
+        },
+        "email": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "isCanceled": {
+          "type": "boolean"
+        },
+        "isPayd": {
+          "type": "boolean"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ItemDto"
+          }
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "loyaltyBonusBurn": {
+          "type": "number"
+        },
+        "loyaltyBonusEarn": {
+          "type": "number"
+        },
+        "loyaltyCardId": {
+          "type": "string"
+        },
+        "managerId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "needCall": {
+          "type": "boolean"
+        },
+        "needSms": {
+          "type": "boolean"
+        },
+        "paymentType": {
+          "type": "string"
+        },
+        "personalDiscounts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PersonalDiscountDto"
+          }
+        },
+        "phone": {
+          "type": "string"
+        },
+        "reasonCanceled": {
+          "type": "string"
+        },
+        "reasonCanceledExternalId": {
+          "type": "string"
+        },
+        "shop": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "sumPaid": {
+          "type": "number"
+        },
+        "timeCanceled": {
+          "type": "string",
+          "example": "yyyy-MM-dd HH:mm:ss"
+        },
+        "timeCreated": {
+          "type": "string",
+          "example": "yyyy-MM-dd HH:mm:ss"
+        },
+        "timePayd": {
+          "type": "string",
+          "example": "yyyy-MM-dd HH:mm:ss"
+        }
+      },
+      "title": "ProductOrderDto"
+    },
+    "PromoDto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "PromoDto"
+    },
+    "StatusUpdateDto": {
+      "type": "object",
+      "properties": {
+        "itemStatus": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ItemStatusDto"
+          }
+        },
+        "orderId": {
+          "type": "string"
+        }
+      },
+      "title": "StatusUpdateDto"
+    },
+    "StockDto": {
+      "type": "object",
+      "properties": {
+        "batchCode": {
+          "type": "string",
+          "xml": {
+            "name": "batchCode",
+            "attribute": false,
+            "wrapped": false
+          }
+        },
+        "expiryDate": {
+          "type": "string",
+          "example": "yyyy-MM-dd",
+          "xml": {
+            "name": "expiryDate",
+            "attribute": false,
+            "wrapped": false
+          }
+        },
+        "id": {
+          "type": "string"
+        },
+        "productId": {
+          "type": "string",
+          "xml": {
+            "name": "productId",
+            "attribute": false,
+            "wrapped": false
+          }
+        },
+        "quantity": {
+          "type": "number",
+          "format": "double",
+          "xml": {
+            "name": "quantity",
+            "attribute": false,
+            "wrapped": false
+          }
+        },
+        "warehouseId": {
+          "type": "string",
+          "xml": {
+            "name": "warehouseId",
+            "attribute": false,
+            "wrapped": false
+          }
+        }
+      },
+      "title": "StockDto",
+      "xml": {
+        "name": "StockDto",
+        "attribute": false,
+        "wrapped": false
+      }
+    },
+    "UpdateOrdersStatusDto": {
+      "type": "object",
+      "properties": {
+        "orderId": {
+          "type": "array",
+          "xml": {
+            "name": "orderId",
+            "attribute": false,
+            "wrapped": false
+          },
+          "items": {
+            "type": "string"
+          }
+        },
+        "statusId": {
+          "type": "string",
+          "xml": {
+            "name": "statusId",
+            "attribute": false,
+            "wrapped": false
+          }
+        }
+      },
+      "title": "UpdateOrdersStatusDto",
+      "xml": {
+        "name": "UpdateOrdersStatusDto",
+        "attribute": false,
+        "wrapped": false
+      }
+    },
+    "UpdateShippingRestRequestDto": {
+      "type": "object",
+      "properties": {
+        "orderId": {
+          "type": "string"
+        },
+        "shippingId": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateShippingRestRequestDto"
+    },
+    "View": {
+      "type": "object",
+      "properties": {
+        "contentType": {
+          "type": "string"
+        }
+      },
+      "title": "View"
+    },
+    "WarehouseDto": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "brand": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "comments": {
+          "type": "string"
+        },
+        "district": {
+          "type": "string"
+        },
+        "externalId": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "isDefault": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "pointOfSale": {
+          "type": "boolean"
+        },
+        "priority": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "worksFrom": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "worksTill": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "WarehouseDto"
+    }
+  }
+}

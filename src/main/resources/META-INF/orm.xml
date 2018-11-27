@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-mappings version="2.0" xmlns="http://java.sun.com/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_0.xsd">
+
+    <entity class="ru.starfish24.starfish24model.ProductOrder">
+        <entity-listeners>
+            <entity-listener class="ru.starfish24.mascotte.entity.listener.HistoryListener">
+                <pre-persist method-name="prePersist"/>
+                <pre-update method-name="preUpdate"/>
+            </entity-listener>
+        </entity-listeners>
+    </entity>
+    <entity class="ru.starfish24.starfish24model.ProductOrderItem">
+        <entity-listeners>
+            <entity-listener class="ru.starfish24.mascotte.entity.listener.HistoryListener">
+                <pre-persist method-name="prePersist"/>
+                <pre-update method-name="preUpdate"/>
+            </entity-listener>
+        </entity-listeners>
+    </entity>
+    <entity class="ru.starfish24.starfish24model.Shipping">
+        <entity-listeners>
+            <entity-listener class="ru.starfish24.mascotte.entity.listener.HistoryListener">
+                <pre-persist method-name="prePersist"/>
+                <pre-update method-name="preUpdate"/>
+            </entity-listener>
+        </entity-listeners>
+    </entity>
+</entity-mappings>

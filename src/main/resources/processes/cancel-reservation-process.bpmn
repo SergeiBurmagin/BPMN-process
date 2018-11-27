@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+                  xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+                  xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+                  xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1"
+                  targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.15.1">
+  <bpmn:process id="cancel-reservation" name="Снять все резервы по заказу" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" camunda:asyncBefore="true">
+        <bpmn:extensionElements>
+            <camunda:executionListener delegateExpression="${orderIdCheckListener}" event="start"/>
+        </bpmn:extensionElements>
+      <bpmn:outgoing>SequenceFlow_1y35shx</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="EndEvent_09fmw0d">
+      <bpmn:incoming>SequenceFlow_1oqsyx4</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1y35shx" sourceRef="StartEvent_1" targetRef="Task_0m7xw6i" />
+    <bpmn:sequenceFlow id="SequenceFlow_1z046hj" sourceRef="Task_0m7xw6i" targetRef="executeOrderReservations" />
+    <bpmn:serviceTask id="Task_0m7xw6i" name="Подготовить оперции для отмены резервов" camunda:delegateExpression="${setupCancelOrderActivity}">
+      <bpmn:incoming>SequenceFlow_1y35shx</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1z046hj</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:callActivity id="executeOrderReservations" name="Выполнить резервы&#10;&#10;" calledElement="execute-order-reservations">
+      <bpmn:extensionElements>
+        <camunda:in variables="all" />
+        <camunda:out variables="all" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1z046hj</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_14u8bgi</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:sequenceFlow id="SequenceFlow_14u8bgi" sourceRef="executeOrderReservations" targetRef="Task_188q1t6" />
+    <bpmn:sequenceFlow id="SequenceFlow_1oqsyx4" sourceRef="Task_188q1t6" targetRef="EndEvent_09fmw0d" />
+    <bpmn:serviceTask id="Task_188q1t6" name="Сохранить заказ в 1С" camunda:delegateExpression="${exportOrder2ErpActivity}">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="serviceType">erp_update_light</camunda:inputParameter>
+          <camunda:inputParameter name="cancelReservation">true</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_14u8bgi</bpmn:incoming>
+        <bpmn:incoming>SequenceFlow_02mczdv</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1oqsyx4</bpmn:outgoing>
+    </bpmn:serviceTask>
+      <bpmn:boundaryEvent id="BoundaryEvent_1r7tv1g" attachedToRef="Task_0m7xw6i">
+          <bpmn:outgoing>SequenceFlow_02mczdv</bpmn:outgoing>
+          <bpmn:errorEventDefinition/>
+      </bpmn:boundaryEvent>
+      <bpmn:sequenceFlow id="SequenceFlow_02mczdv" sourceRef="BoundaryEvent_1r7tv1g" targetRef="Task_188q1t6"/>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="cancel-reservation">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="173" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_09fmw0d_di" bpmnElement="EndEvent_09fmw0d">
+        <dc:Bounds x="701" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="424" y="142" width="90" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1y35shx_di" bpmnElement="SequenceFlow_1y35shx">
+          <di:waypoint x="209" y="120"/>
+          <di:waypoint x="263" y="120"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1z046hj_di" bpmnElement="SequenceFlow_1z046hj">
+          <di:waypoint x="363" y="120"/>
+          <di:waypoint x="409" y="120"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_0suyh54_di" bpmnElement="Task_0m7xw6i">
+          <dc:Bounds x="263" y="80" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="CallActivity_17i4gqs_di" bpmnElement="executeOrderReservations">
+        <dc:Bounds x="409" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_14u8bgi_di" bpmnElement="SequenceFlow_14u8bgi">
+          <di:waypoint x="509" y="120"/>
+          <di:waypoint x="556" y="120"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="487.5" y="95" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1oqsyx4_di" bpmnElement="SequenceFlow_1oqsyx4">
+          <di:waypoint x="656" y="120"/>
+          <di:waypoint x="701" y="120"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="678.5" y="99" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_1xbd4cv_di" bpmnElement="Task_188q1t6">
+        <dc:Bounds x="556" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="BoundaryEvent_0i8mhav_di" bpmnElement="BoundaryEvent_1r7tv1g">
+            <dc:Bounds x="297" y="142" width="36" height="36"/>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNEdge id="SequenceFlow_02mczdv_di" bpmnElement="SequenceFlow_02mczdv">
+            <di:waypoint x="315" y="178"/>
+            <di:waypoint x="315" y="277"/>
+            <di:waypoint x="606" y="277"/>
+            <di:waypoint x="606" y="160"/>
+        </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

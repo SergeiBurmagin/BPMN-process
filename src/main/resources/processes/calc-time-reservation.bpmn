@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_06szi9e" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="2.0.3">
+  <bpmn:process id="Process_1" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:extensionElements>
+        <camunda:executionListener delegateExpression="${orderIdCheckListener}" event="start" />
+      </bpmn:extensionElements>
+      <bpmn:outgoing>SequenceFlow_1yrrbfl</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:exclusiveGateway id="ExclusiveGateway_0ia2m9r" name="Тип доставки?">
+      <bpmn:incoming>SequenceFlow_1yrrbfl</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0xnwzw4</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_100jj1k</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="SequenceFlow_1yrrbfl" sourceRef="StartEvent_1" targetRef="ExclusiveGateway_0ia2m9r" />
+    <bpmn:exclusiveGateway id="ExclusiveGateway_02opqlo">
+      <bpmn:incoming>SequenceFlow_03cu9cc</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_1yfmmpx</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_03oeuwi</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="SequenceFlow_0xnwzw4" name="самовывоз" sourceRef="ExclusiveGateway_0ia2m9r" targetRef="Task_11i4y1h">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${deliveryType == 'pickup'}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="SequenceFlow_100jj1k" name="доставка до  двери" sourceRef="ExclusiveGateway_0ia2m9r" targetRef="Task_164ltk1">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${deliveryType != 'pickup'}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="SequenceFlow_03cu9cc" sourceRef="Task_11i4y1h" targetRef="ExclusiveGateway_02opqlo" />
+    <bpmn:sequenceFlow id="SequenceFlow_1yfmmpx" sourceRef="Task_164ltk1" targetRef="ExclusiveGateway_02opqlo" />
+    <bpmn:endEvent id="StartEvent_04f12y8">
+      <bpmn:incoming>SequenceFlow_03oeuwi</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_03oeuwi" sourceRef="ExclusiveGateway_02opqlo" targetRef="StartEvent_04f12y8" />
+    <bpmn:serviceTask id="Task_164ltk1" name="Доставка до двери" camunda:delegateExpression="${pickUpCalcTimeReservation}">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="dayCount">1</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_100jj1k</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1yfmmpx</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Task_11i4y1h" name="Самовывоз" camunda:delegateExpression="${pickUpCalcTimeReservation}">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="dayCount">1</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_0xnwzw4</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_03cu9cc</bpmn:outgoing>
+    </bpmn:serviceTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="173" y="174" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ExclusiveGateway_0ia2m9r_di" bpmnElement="ExclusiveGateway_0ia2m9r" isMarkerVisible="true">
+        <dc:Bounds x="352.806" y="167" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="284" y="212" width="74" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1yrrbfl_di" bpmnElement="SequenceFlow_1yrrbfl">
+        <di:waypoint x="209" y="192" />
+        <di:waypoint x="353" y="192" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ExclusiveGateway_02opqlo_di" bpmnElement="ExclusiveGateway_02opqlo" isMarkerVisible="true">
+        <dc:Bounds x="714.806" y="167" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0xnwzw4_di" bpmnElement="SequenceFlow_0xnwzw4">
+        <di:waypoint x="378" y="217" />
+        <di:waypoint x="378" y="325" />
+        <di:waypoint x="495" y="325" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="365" y="261" width="56" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_100jj1k_di" bpmnElement="SequenceFlow_100jj1k">
+        <di:waypoint x="403" y="192" />
+        <di:waypoint x="495" y="192" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="419" y="174" width="61" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_03cu9cc_di" bpmnElement="SequenceFlow_03cu9cc">
+        <di:waypoint x="595" y="325" />
+        <di:waypoint x="740" y="325" />
+        <di:waypoint x="740" y="217" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1yfmmpx_di" bpmnElement="SequenceFlow_1yfmmpx">
+        <di:waypoint x="595" y="192" />
+        <di:waypoint x="715" y="192" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_1638e6y_di" bpmnElement="StartEvent_04f12y8">
+        <dc:Bounds x="913" y="174" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_03oeuwi_di" bpmnElement="SequenceFlow_03oeuwi">
+        <di:waypoint x="765" y="192" />
+        <di:waypoint x="913" y="192" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_17va9p3_di" bpmnElement="Task_164ltk1">
+        <dc:Bounds x="495" y="152" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_13aqrlv_di" bpmnElement="Task_11i4y1h">
+        <dc:Bounds x="495" y="285" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

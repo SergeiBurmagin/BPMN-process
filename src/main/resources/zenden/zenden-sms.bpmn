@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_0twraj1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.15.1">
+  <bpmn:process id="Zenden-sms" name="Zenden-sms" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>SequenceFlow_1ac9903</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sendTask id="SendTask_0yaex7s" name="SMS " camunda:delegateExpression="${warehouseSmsActivity}">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="smsCode">CONFIRMATION_CALL</camunda:inputParameter>
+          <camunda:inputParameter name="recipient">manager_email</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1ac9903</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0az2v7x</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:sequenceFlow id="SequenceFlow_1ac9903" sourceRef="StartEvent_1" targetRef="SendTask_0yaex7s" />
+    <bpmn:endEvent id="EndEvent_1u6wmjh">
+      <bpmn:incoming>SequenceFlow_0az2v7x</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0az2v7x" sourceRef="SendTask_0yaex7s" targetRef="EndEvent_1u6wmjh" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Zenden-sms">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="173" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="SendTask_0yaex7s_di" bpmnElement="SendTask_0yaex7s">
+        <dc:Bounds x="287" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1ac9903_di" bpmnElement="SequenceFlow_1ac9903">
+        <di:waypoint x="209" y="120" />
+        <di:waypoint x="287" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_1u6wmjh_di" bpmnElement="EndEvent_1u6wmjh">
+        <dc:Bounds x="501" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0az2v7x_di" bpmnElement="SequenceFlow_0az2v7x">
+        <di:waypoint x="387" y="120" />
+        <di:waypoint x="501" y="120" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

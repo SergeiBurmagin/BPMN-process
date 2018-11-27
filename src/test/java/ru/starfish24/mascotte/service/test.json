@@ -1,0 +1,27 @@
+{
+  "productOrderItem": {
+    "id": 785135,
+    "productId": 1295162,
+    "productExternalId": "1126047_42",
+    "productName": "Размер 42",
+    "quantity": 1
+  },
+  "reserve": {
+    "name": "Пятницкая",
+    "pointOfSale": true,
+    "externalId": "492dad53-8422-11d9-8b55-00112f3df9bd",
+    "id": 486,
+    "code": null,
+    "isDefault": null
+  },
+  "target": {
+    "name": "Пятницкая",
+    "pointOfSale": true,
+    "externalId": "492dad53-8422-11d9-8b55-00112f3df9bd",
+    "id": null,
+    "code": null,
+    "isDefault": null
+  },
+  "transit": null,
+  "transition": null
+}]

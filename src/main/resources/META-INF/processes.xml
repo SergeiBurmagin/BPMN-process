@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<process-application
+        xmlns="http://www.camunda.org/schema/1.0/ProcessApplication"
+>
+
+    <process-archive name="mascotte-bpm" tenantId="mascotte">
+        <process-engine>default</process-engine>
+        <properties>
+            <property name="isDeleteUponUndeploy">false</property>
+            <property name="isScanForProcessDefinitions">true</property>
+            <property name="isResumePreviousVersions">true</property>
+            <property name="resumePreviousBy">deployment-name</property>
+            <property name="jobExecutorActivate">true</property>
+            <property name="history">none</property>
+        </properties>
+    </process-archive>
+
+    <process-archive name="zenden-bpm" tenantId="zenden">
+        <process-engine>default</process-engine>
+        <properties>
+            <property name="resourceRootPath">classpath:zenden/</property>
+            <property name="isDeleteUponUndeploy">false</property>
+            <property name="isScanForProcessDefinitions">true</property>
+            <property name="isResumePreviousVersions">true</property>
+            <property name="resumePreviousBy">deployment-name</property>
+            <property name="jobExecutorActivate">true</property>
+            <property name="history">none</property>
+        </properties>
+    </process-archive>
+
+</process-application>

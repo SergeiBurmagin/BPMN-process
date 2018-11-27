@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+                  xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+                  xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+                  xmlns:camunda="http://camunda.org/schema/1.0/bpmn"
+                  id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler"
+                  exporterVersion="1.15.1">
+  <bpmn:process id="Process_1" name="order-ui-create" isExecutable="true" camunda:versionTag="Уведомление о создании заказа в UI">
+    <bpmn:startEvent id="StartEvent_1" camunda:asyncBefore="true">
+        <bpmn:extensionElements>
+            <camunda:executionListener delegateExpression="${orderIdCheckListener}" event="start"/>
+        </bpmn:extensionElements>
+      <bpmn:outgoing>SequenceFlow_1newzis</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="Task_1s21qpc" name="Обновление заказа в UI" camunda:delegateExpression="${createNotificationActivity}">
+      <bpmn:incoming>SequenceFlow_1newzis</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0ju4rwl</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="SequenceFlow_1newzis" sourceRef="StartEvent_1" targetRef="Task_1s21qpc" />
+    <bpmn:endEvent id="EndEvent_0c8zv3f">
+      <bpmn:incoming>SequenceFlow_0ju4rwl</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0ju4rwl" sourceRef="Task_1s21qpc" targetRef="EndEvent_0c8zv3f" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="173" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_0scbl4t_di" bpmnElement="Task_1s21qpc">
+        <dc:Bounds x="279" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1newzis_di" bpmnElement="SequenceFlow_1newzis">
+          <di:waypoint x="209" y="120"/>
+          <di:waypoint x="279" y="120"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="244" y="99" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_0c8zv3f_di" bpmnElement="EndEvent_0c8zv3f">
+        <dc:Bounds x="463.24" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="481.24" y="142" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0ju4rwl_di" bpmnElement="SequenceFlow_0ju4rwl">
+          <di:waypoint x="379" y="120"/>
+          <di:waypoint x="463" y="120"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="421" y="99" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

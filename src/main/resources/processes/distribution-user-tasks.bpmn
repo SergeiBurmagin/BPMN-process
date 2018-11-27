@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+                  xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+                  xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn"
+                  xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1k1tlxr"
+                  targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.15.1">
+  <bpmn:process id="DistrUserTasks" name="Раздача задач по сотрудникам " isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" camunda:asyncBefore="true">
+      <bpmn:outgoing>SequenceFlow_09e9kdv</bpmn:outgoing>
+    </bpmn:startEvent>
+      <bpmn:sequenceFlow id="SequenceFlow_09e9kdv" sourceRef="StartEvent_1" targetRef="Task_14xds3v"/>
+      <bpmn:serviceTask id="Task_14xds3v" name="Получение и обработка задачь "
+                        camunda:delegateExpression="${findNotAssignedTasks}">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="troubleTasks">10</camunda:inputParameter>
+          <camunda:inputParameter name="confirmTasks">10</camunda:inputParameter>
+          <camunda:inputParameter name="performingTime">40</camunda:inputParameter>
+            <camunda:inputParameter name="warehouseTasks">10</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_09e9kdv</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1xk19aw</bpmn:outgoing>
+    </bpmn:serviceTask>
+      <bpmn:sequenceFlow id="SequenceFlow_1xk19aw" sourceRef="Task_14xds3v" targetRef="EndEvent_1ugpbqc"/>
+    <bpmn:endEvent id="EndEvent_1ugpbqc">
+      <bpmn:incoming>SequenceFlow_1xk19aw</bpmn:incoming>
+    </bpmn:endEvent>
+  </bpmn:process>
+    <bpmn:signal id="Signal_0wybz02" name="USER_TASKS_UPDATE-${userId}"/>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="DistrUserTasks">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+          <dc:Bounds x="355" y="102" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_09e9kdv_di" bpmnElement="SequenceFlow_09e9kdv">
+          <di:waypoint x="391" y="120"/>
+          <di:waypoint x="495" y="120"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_06o39qw_di" bpmnElement="Task_14xds3v">
+          <dc:Bounds x="495" y="80" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1xk19aw_di" bpmnElement="SequenceFlow_1xk19aw">
+          <di:waypoint x="595" y="120"/>
+          <di:waypoint x="675" y="120"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_1ugpbqc_di" bpmnElement="EndEvent_1ugpbqc">
+          <dc:Bounds x="675" y="102" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
